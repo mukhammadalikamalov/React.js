@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import '../src/index.css';
 
-function App() {
+function Counter() {
+
+  const [ counter, setCounter ] = useState(0);
+
+  function increment() {
+    setCounter( prevCounter => prevCounter + 1);
+  }
+
+  function decrement() {
+    if ( counter > 0 ) {
+      setCounter( prevCounter => prevCounter - 1);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='input-group'>
+      <button className='decrement' onClick={decrement}>-</button>
+      <input type='number' value={counter} readOnly />
+      <button className='increment' onClick={increment}>+</button>
     </div>
-  );
+  )
+ 
 }
 
-export default App;
+export default Counter;
